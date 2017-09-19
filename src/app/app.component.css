@@ -4,10 +4,17 @@ snack-bar-container.snack-dev {
 snack-bar-container.snack-dev:before {
   content: "Dev";
 }
-.aside {
-  position: absolute;
-  min-width: 60%;
-  max-width: 60%;
-  right: -15px;
-  z-index: 1000;
+
+md-sidenav {
+  min-width: 50%;
+  max-width: 80%;
+}
+.sidenav-close {
+  font-size: 1.5em;
+  color: grey;
+}
+.sidenav-close i {
+  position: relative;
+  float: right;
+  margin: 5px;
 }

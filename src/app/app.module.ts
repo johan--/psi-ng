@@ -13,6 +13,7 @@ import { NodeComponent } from './node/node.component';
 import { AddNodeFormComponent } from './forms.component';
 import { NodeService } from './services/node.service';
 import { TableService } from './services/table.service';
+import { SidenavService } from './services/sidenav.service';
 import { GeocodingService } from './services/geocoding.service';
 import { ApiTransformerService } from './services/api-transformer.service';
 import { NodeTypeAheadComponent } from './node-type-ahead/node-type-ahead.component';
@@ -64,7 +65,7 @@ import { TableSearchComponent } from './table-search/table-search.component';
     LeafletDrawModule,
     HotTableModule
   ],
-  providers: [NodeService, TableService, GeocodingService, ApiTransformerService],
+  providers: [NodeService, TableService, GeocodingService, ApiTransformerService, SidenavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

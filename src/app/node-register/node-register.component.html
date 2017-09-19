@@ -1,94 +1,115 @@
-<md-card>
+<!--<md-card>-->
   <h3>Saisir un relevé</h3>
   <form (ngSubmit)="register()" [formGroup]="nodeForm">
-    
-    <!-- HEADER (root node data)-->
-    <div class="form-group" id="rootNode">
-      <label for="rootNodeOptions">Selectionnez un référentiel et un niveau d'intégration</label>
-      <div class="form-group form-inline" id ="rootNodeOptions">
-        <md-select formName="repository" placeholder="Référentiel">
-          <md-option value="baseveg">baseveg</md-option>
-        </md-select>
-        <md-select formName="level" placeholder="Niveau d'intégration">
-          <md-option value="synusy">synusie</md-option>
-        </md-select>
-      </div>
-      <!-- MAP -->
-      <div class="psi-map">
-        <div leaflet style="height: 300px;"
-            [leafletOptions]="options"
-            (leafletMapReady)="onMapReady($event)">
-        </div>
-        <input class="form-control" formControlName="geoJson" style="display: none;" placeholder="geoJson object">
-        <input class="form-control" formControlName="mapSearchInput" placeholder="Rechercher un lieu">
-        <div>
-          <ul>
-            <li (click)="mapResultClick(item)" *ngFor="let item of mapSearchResults">{{ item.formatted_address }}</li>
-          </ul>
-        </div>
-        <div>Lat, Lng: {{ mapLat }}, {{ mapLng }}</div>
-      </div>
-    </div>
+    <md-expansion-panel>
+      <md-expansion-panel-header>
+        <md-panel-title>
+          Métadonnées
+        </md-panel-title>
+        <md-panel-description>
+          Auteur, date, localisation...
+        </md-panel-description>
+      </md-expansion-panel-header>
 
-    <!-- CHILD NODES FORM -->
-    <div id="childNodes">
-      <div formArrayName="nodes"
-        *ngFor="let node of nodeForm.get('nodes').controls; let i = index;">
-        <div class="form-group no-margin">
-          <div [formGroupName]="i">
-            <div class="input-group input-group-sm">
-              <span [class.redColor]="!node.valid" [class.greenColor]="node.valid" placement="left" [ngbPopover]="popContent" triggers="mouseenter:mouseleave">
-                <i class="fa" [class.fa-circle-o]="!node.value.isLoading" [class.fa-circle-o-notch]="node.value.isLoading" [class.fa-spin]="node.value.isLoading"></i>
-                <!--<i class="fa fa-circle-o" aria-hidden="true"></i>-->
-              </span>
-              <!--<div [hidden]="!node.value.isLoading"><i class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i></div>-->
-              <ng-template #popContent>
-                <div *ngIf="node.valid">
-                  <b>Informations à propos de votre saisie :</b><br />
-                  ref: <i>{{ node.value.repository }}</i><br/>
-                  taxo: <i>{{ node.value.repositoryIdTaxo }}</i><br/>
-                  nomen: <i>{{ node.value.repositoryIdNomen }}</i><br/>
-                  input: <i>{{ node.value.inputName }}</i><br/>
-                  validated: <i>{{ node.value.validatedName }}</i><br/>
-                </div>
-                <div *ngIf="!node.valid">Entrez un (syn)taxon et un coefficient</div>
-              </ng-template>
-              
-              <div style="display: none;">
-                <input formControlName="repositoryIdTaxo" value="{{node.repositoryIdTaxo}}" placeholder="id taxo">
-                <input formControlName="repositoryIdNomen" value="{{node.repositoryIdNomen}}" placeholder="id nomen">
-                <input formControlName="inputName" value="{{node.inputName}}" placeholder="inputname">
-                <input formControlName="validatedName" value="{{node.validatedName}}" placeholder="validatedname">
-              </div>
+      <!-- HEADER (root node data)-->
+      <div class="form-group" id="rootNode">
+        <label for="rootNodeOptions">Selectionnez un référentiel et un niveau d'intégration</label>
+        <div class="form-group form-inline" id ="rootNodeOptions">
+          <md-select formName="repository" placeholder="Référentiel">
+            <md-option value="baseveg">baseveg</md-option>
+          </md-select>
+          <md-select formName="level" placeholder="Niveau d'intégration">
+            <md-option value="synusy">synusie</md-option>
+          </md-select>
+        </div>
+        <!-- MAP -->
+        <div class="psi-map">
+          <div leaflet style="height: 300px;"
+              [leafletOptions]="options"
+              (leafletMapReady)="onMapReady($event)">
+          </div>
+          <input class="form-control" formControlName="geoJson" style="display: none;" placeholder="geoJson object">
+          <input class="form-control" formControlName="mapSearchInput" placeholder="Rechercher un lieu">
+          <div>
+            <ul>
+              <li (click)="mapResultClick(item)" *ngFor="let item of mapSearchResults">{{ item.formatted_address }}</li>
+            </ul>
+          </div>
+          <div>Lat, Lng: {{ mapLat }}, {{ mapLng }}</div>
+        </div>
+      </div>
+    </md-expansion-panel>
 
-              <div class="psi-search-box">
-                <div class="psi-search-inputs">
-                  <input id="searchInput{{i}}" class="form-control" formControlName="name" placeholder="(syn)taxon">
-                  <input class="form-control" formControlName="coef" placeholder="coef" (keydown.Tab)="onCoefTabKey($event, i)" style="max-width:30px;" #nodeSearchInput>
-                  <span (click)="resetItem(node)"><i class="fa fa-undo" aria-hidden="true"></i></span>
-                  <span (click)="deleteItem(i)"><i class="fa fa-bomb" aria-hidden="true"></i></span>
+    <md-expansion-panel>
+      <md-expansion-panel-header>
+        <md-panel-title>
+          Données
+        </md-panel-title>
+        <md-panel-description>
+          Entrez les taxons ici...
+        </md-panel-description>
+      </md-expansion-panel-header>
+
+      <!-- CHILD NODES FORM -->
+      <div id="childNodes">
+        <div formArrayName="nodes"
+          *ngFor="let node of nodeForm.get('nodes').controls; let i = index;">
+          <div class="form-group no-margin">
+            <div [formGroupName]="i">
+              <div class="input-group input-group-sm">
+                <span [class.redColor]="!node.valid" [class.greenColor]="node.valid" placement="left" [ngbPopover]="popContent" triggers="mouseenter:mouseleave">
+                  <i class="fa" [class.fa-circle-o]="!node.value.isLoading" [class.fa-circle-o-notch]="node.value.isLoading" [class.fa-spin]="node.value.isLoading"></i>
+                  <!--<i class="fa fa-circle-o" aria-hidden="true"></i>-->
+                </span>
+                <!--<div [hidden]="!node.value.isLoading"><i class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i></div>-->
+                <ng-template #popContent>
+                  <div *ngIf="node.valid">
+                    <b>Informations à propos de votre saisie :</b><br />
+                    ref: <i>{{ node.value.repository }}</i><br/>
+                    taxo: <i>{{ node.value.repositoryIdTaxo }}</i><br/>
+                    nomen: <i>{{ node.value.repositoryIdNomen }}</i><br/>
+                    input: <i>{{ node.value.inputName }}</i><br/>
+                    validated: <i>{{ node.value.validatedName }}</i><br/>
+                  </div>
+                  <div *ngIf="!node.valid">Entrez un (syn)taxon et un coefficient</div>
+                </ng-template>
+                
+                <div style="display: none;">
+                  <input formControlName="repositoryIdTaxo" value="{{node.repositoryIdTaxo}}" placeholder="id taxo">
+                  <input formControlName="repositoryIdNomen" value="{{node.repositoryIdNomen}}" placeholder="id nomen">
+                  <input formControlName="inputName" value="{{node.inputName}}" placeholder="inputname">
+                  <input formControlName="validatedName" value="{{node.validatedName}}" placeholder="validatedname">
                 </div>
-                
-                <input class="form-control" formControlName="searchResults" style="display:none;" #results>
-                
-                <div class="psi-search-results" [hidden]="node.controls.searchResults.value?.length == 0">
-                  <ul>
-                    <li (click)="selectedResult(node, j, i); nodeSearchInput.focus();" *ngFor="let result of nodeForm.value.nodes[i].searchResults; let j = index">{{ result.scientific_name }}</li>
-                  </ul>
+
+                <div class="psi-search-box">
+                  <div class="psi-search-inputs">
+                    <input id="searchInput{{i}}" class="form-control" formControlName="name" placeholder="(syn)taxon">
+                    <input class="form-control" formControlName="coef" placeholder="coef" (keydown.Tab)="onCoefTabKey($event, i)" style="max-width:30px;" #nodeSearchInput>
+                    <span (click)="resetItem(node)"><i class="fa fa-undo" aria-hidden="true"></i></span>
+                    <span (click)="deleteItem(i)"><i class="fa fa-bomb" aria-hidden="true"></i></span>
+                  </div>
+                  
+                  <input class="form-control" formControlName="searchResults" style="display:none;" #results>
+                  
+                  <div class="psi-search-results" [hidden]="node.controls.searchResults.value?.length == 0">
+                    <ul>
+                      <li (click)="selectedResult(node, j, i); nodeSearchInput.focus();" *ngFor="let result of nodeForm.value.nodes[i].searchResults; let j = index">{{ result.scientific_name }}</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="input-group input-group-sm">
-              
+              <div class="input-group input-group-sm">
+                
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </md-expansion-panel>
 
     <div (click)="addItem()">+</div>
     
     <button class="btn btn-primary" type="submit" [disabled]="!nodeForm.valid">Enregistrer</button>
     <button class="btn btn-primary" type="submit" [disabled]="!nodeForm.valid" (click)="registerAndAddToCurrentTable()">Enregistrer et ajouter au tableau</button>
   </form>
-</md-card>
+<!--</md-card>-->

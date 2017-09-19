@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'psi-table-search',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableSearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sidenavService: SidenavService) { }
 
   ngOnInit() {
+    this.sidenavService.sideNav.open();
   }
 
 }

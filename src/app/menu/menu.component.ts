@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'psi-menu',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sidenavService: SidenavService) { }
 
   ngOnInit() {
+  }
+
+  openSidenav() {
+    this.sidenavService.sideNav.open();
   }
 
 }
