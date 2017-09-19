@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-6">
+    <psi-table-spreadsheet [currentTable]="currentTable"></psi-table-spreadsheet>
+    <button class="btn btn-primary" (click)="registerTable(currentTable)">Enregistrer le tableau</button>
+  </div>
+  <div class="col-md-6">
+    <psi-table-map [currentTable]="currentTable"></psi-table-map>
+  </div>
+</div>

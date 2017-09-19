@@ -1,0 +1,45 @@
+#rootNode {
+  border: solid 1px black;
+}
+
+#childNodes {
+  border: solid 1px black;
+}
+
+.dev-info {
+  font-size: 0.5em;
+  color: grey;
+}
+
+input.ng-invalid.ng-dirty {
+border: 1px red solid;
+}
+
+.psi-search-results {
+  background-color: grey;
+}
+
+.psi-search-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.psi-search-inputs {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.psi-search-results {
+  display: block;
+}
+
+.greenColor {
+  color: green;
+}
+.redColor {
+  color: red;
+}
+
+.form-group.no-margin {
+  margin: 0;
+}

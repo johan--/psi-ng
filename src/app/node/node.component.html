@@ -1,0 +1,10 @@
+<md-card class="node-mini">
+	<div class="flex top">
+		<div class="small"><span class="level">{{ node.level }} <span class="small">[id:{{ node.id }}]</span></span></div>
+		<div class="name">{{ node.name }}</div>
+	</div>
+	<div class="flex bottom">
+		<button md-button>Aperçu</button>
+		<button md-button (click)="addNodeToCurrentTable(node)">Ajouter au tableau</button>
+	</div>
+</md-card>

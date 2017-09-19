@@ -1,0 +1,8 @@
+<h2>Ajouter un relevé</h2>
+<form (ngSubmit)="register()" [formGroup]="nodeForm">
+	<div>
+		<label>Node</label><input formControlName="node">
+		<div>{{ nodesResult }}</div>
+	</div>
+	<button type="submit">Register</button>
+</form>

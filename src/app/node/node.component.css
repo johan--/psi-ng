@@ -1,0 +1,26 @@
+.node-mini {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.node-mini .flex {
+  display: flex;
+}
+.flex.top {
+  flex-direction: column;
+}
+.flex.bottom {
+  justify-content: space-around;
+}
+.small {
+  font-size: .8em;
+}
+.level {
+  background-color: #e8e8e8;
+  border-radius: 0 0 5px 5px;
+  padding: 4px;
+  padding-top: 0;
+}

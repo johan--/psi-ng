@@ -17,11 +17,22 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "psi",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "./assets/mdBootstrap/css/mdb.min.css",
+        "../node_modules/leaflet/dist/leaflet.css",
+        "../node_modules/leaflet-draw/dist/leaflet.draw.css",
+        "style.scss",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "./assets/mdBootstrap/js/jquery-3.1.1.min.js",
+        "./assets/mdBootstrap/js/tether.min.js",
+        "./assets/mdBootstrap/js/bootstrap.min.js",
+        "./assets/mdBootstrap/js/mdb.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
