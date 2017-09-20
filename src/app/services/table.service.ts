@@ -10,7 +10,7 @@ import 'rxjs/add/operator/do';
 import { NodeModel } from '../models/node.model';
 import { TableModel } from '../models/table.model';
 import { TNodeModel } from '../models/table-node.model';
-import { MdSnackBar } from '@angular/material';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class TableService {
@@ -47,7 +47,7 @@ export class TableService {
     fillOpacity: 0.8
   };
 
-  constructor(private http: Http, private snackBar: MdSnackBar) {
+  constructor(private http: Http, private notificationsService: NotificationsService) {
     this.currentTableChange.subscribe((value) => {
       this.currentTable = value;
       this.updateTable();
@@ -111,13 +111,13 @@ export class TableService {
 
     if(existingNodesInTable.length > 0) {
       if(existingNodesInTable.length == 1) {
-        this.snackBar.open(`Le relevé n° ${existingNodesInTable[0].id} existe déjà dans le tableau, il n'a pas été ajouté`, 'Ok')
-      } else {
+        this.notificationsService.info('', `Le relevé n° ${existingNodesInTable[0].id} existe déjà dans le tableau, il n'a pas été ajouté`);
+    } else {
         const nodesDblIds: Array<number> = [];
         existingNodesInTable.forEach(node => {
           nodesDblIds.push(node.id);
         });
-        this.snackBar.open(`${nodesDblIds.length} relevés existent déjà dans le tableau (n° ${nodesDblIds.toString()}), ils n'ont pas été ajoutés`, 'Ok')
+        this.notificationsService.info('', `${nodesDblIds.length} relevés existent déjà dans le tableau (n° ${nodesDblIds.toString()}), ils n'ont pas été ajoutés`);
       }
     }
     this.currentTableChange.next(table);

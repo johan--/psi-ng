@@ -5,7 +5,7 @@ import { NodeModel } from '../models/node.model';
 import { TableModel } from '../models/table.model';
 import { TNodeModel } from '../models/table-node.model';
 import { Observable } from 'rxjs/Observable';
-import { MdSnackBar } from '@angular/material';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'psi-table',
@@ -14,7 +14,7 @@ import { MdSnackBar } from '@angular/material';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private nodeService: NodeService, private tableService: TableService, private snackBar: MdSnackBar) { }
+  constructor(private nodeService: NodeService, private tableService: TableService, private notificationsService: NotificationsService) { }
   
   private nodes: Array<NodeModel> = [];
   private uniqueTaxons: any[] = [];
@@ -72,7 +72,7 @@ export class TableComponent implements OnInit {
     this.tableService.register(table).subscribe(
       (r) => {
         //console.log(r);
-        this.snackBar.open(`Tableau sauvegardé`, 'fermer');
+        this.notificationsService.success('Votre tableau a bien été sauvegardé');
       },
       (e) => {
         console.log(e);

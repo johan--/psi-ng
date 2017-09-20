@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 
@@ -33,6 +34,7 @@ import { TableMapComponent } from './table-map/table-map.component';
 import { TableSpreadsheetComponent } from './table-spreadsheet/table-spreadsheet.component';
 import { TableSearchComponent } from './table-search/table-search.component';
 import { TableCardComponent } from './table-card/table-card.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 //import { camelcaseKeys } from 'camelcase-keys';
 
 @NgModule({
@@ -51,7 +53,8 @@ import { TableCardComponent } from './table-card/table-card.component';
     TableMapComponent,
     TableSpreadsheetComponent,
     TableSearchComponent,
-    TableCardComponent
+    TableCardComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +65,7 @@ import { TableCardComponent } from './table-card/table-card.component';
     RouterModule.forRoot(ROUTES),
     NgbModule.forRoot(),
     BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot(),
     MaterialModule,
     LeafletModule,
     LeafletDrawModule,

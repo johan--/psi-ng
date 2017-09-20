@@ -17,9 +17,10 @@ import { TableService} from '../services/table.service';
 import { GeocodingService } from '../services/geocoding.service';
 import { ApiTransformerService as apiTS } from '../services/api-transformer.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MdButtonModule, MdSelectModule, MdCardModule, MdInputContainer, MdSnackBar } from '@angular/material';
+import { MdButtonModule, MdSelectModule, MdCardModule, MdInputContainer } from '@angular/material';
 import { bfPipe } from '../pipes/bfPipe';
 import { slideToLeft } from '../animations/anim';
+import { NotificationsService } from 'angular2-notifications';
 
 let searchResults: any = [];
 
@@ -109,7 +110,6 @@ export class NodeRegisterComponent implements OnInit {
       let type: string = e['layerType']; // type = marker, polygon, ...
       let layer: L.Layer = e['layer'];
       this.drawnItems.addLayer(layer);
-      //this.snackBar.open(`New layer addes to map at ${layer}`, 'close');
       this.nodeForm.controls['geoJson'].patchValue(this.drawnItems.toGeoJSON());
       if(this.drawnItems.getLayers().length > 0) this.map.removeControl(this.drawControlFull);
       if(this.drawnItems.getLayers().length === 1) this.drawnFinalItem = this.drawnItems.getLayers()[0];
@@ -133,7 +133,7 @@ console.log(this.mapLayers);
   }
   // End Leaflet
 
-  constructor(private fb: FormBuilder, private nodeService: NodeService, private tableService: TableService, private apiTS: apiTS, private geocodingService: GeocodingService, private snackBar: MdSnackBar, private router: Router) { }
+  constructor(private fb: FormBuilder, private nodeService: NodeService, private tableService: TableService, private apiTS: apiTS, private geocodingService: GeocodingService, private notificationsService: NotificationsService, private router: Router) { }
 
   ngOnInit() {
     // Create Form Group
@@ -245,7 +245,7 @@ console.log(this.mapLayers);
     this.nodeService.register(this.nodeForm.value)
     .subscribe(
       (response) => {
-        this.snackBar.open('Votre relevé à bien été enregistré', 'close');
+        this.notificationsService.success('', 'Votre relevé a bien été enregistré');
         // reset the form
         let nodesNow: FormArray = this.nodeForm.value.nodes;
         this.nodeForm.reset();
@@ -261,7 +261,7 @@ console.log(this.mapLayers);
     this.nodeService.register(this.nodeForm.value)
     .subscribe(
       (response) => {
-        this.snackBar.open('Votre relevé à bien été enregistré', 'close');
+        this.notificationsService.success('Votre relevé a bien été enregistré');
         this.tableService.pushNodesOnTable([response], this.tableService.getCurrentTable());
         this.tableService.markCurrentTableHasChanged();
 console.log(response);
