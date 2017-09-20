@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TableService } from '../services/table.service';
 import { SidenavService } from '../services/sidenav.service';
+import { TableModel } from '../models/table.model';
 
 @Component({
   selector: 'psi-table-search',
@@ -8,10 +10,23 @@ import { SidenavService } from '../services/sidenav.service';
 })
 export class TableSearchComponent implements OnInit {
 
-  constructor(private sidenavService: SidenavService) { }
+  private tablesResult: Array<TableModel> = [];
+
+  constructor(private tableService: TableService, private sidenavService: SidenavService) { }
 
   ngOnInit() {
     this.sidenavService.sideNav.open();
+    this.getAllTables();
+  }
+
+  getAllTables() {
+    this.tableService.getAllTables().subscribe(
+      (r) => {
+        this.tablesResult = r;
+      }, (e) => {
+        console.log(e);
+      }
+    )
   }
 
 }

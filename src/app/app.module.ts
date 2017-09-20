@@ -32,6 +32,7 @@ import { TableComponent } from './table/table.component';
 import { TableMapComponent } from './table-map/table-map.component';
 import { TableSpreadsheetComponent } from './table-spreadsheet/table-spreadsheet.component';
 import { TableSearchComponent } from './table-search/table-search.component';
+import { TableCardComponent } from './table-card/table-card.component';
 //import { camelcaseKeys } from 'camelcase-keys';
 
 @NgModule({
@@ -49,7 +50,8 @@ import { TableSearchComponent } from './table-search/table-search.component';
     TableComponent,
     TableMapComponent,
     TableSpreadsheetComponent,
-    TableSearchComponent
+    TableSearchComponent,
+    TableCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+.spreadsheet-container {
+  max-height: 400px;
+  height: auto;
+
+  margin: 10px;
+}
+.spreadsheet-menu {
+  background-color: #d8d4d4;
+}

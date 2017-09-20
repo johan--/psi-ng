@@ -1,3 +1,7 @@
-<p>
-  table-search works!
-</p>
+<md-card>
+  <ul>
+    <li *ngFor="let table of tablesResult">
+      <psi-table-card [table]=table></psi-table-card>
+    </li>
+  </ul>
+</md-card>

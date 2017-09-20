@@ -1,0 +1,10 @@
+<md-card class="table-mini">
+	<div class="flex top">
+		<div class="small"><span class="small">[id:{{ table.id }}]</span></div>
+		<div class="name">{{ table.name }}</div>
+	</div>
+	<div class="flex bottom">
+		<button md-button (click)="replaceCurrentTable(table)">Utiliser comme tableau courant</button>
+		<button md-button (click)="mergeWithCurrentTable(table)">Fusionner avec le tableau courant</button>
+	</div>
+</md-card>

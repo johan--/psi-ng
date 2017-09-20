@@ -10,6 +10,7 @@ import 'rxjs/add/operator/do';
 import { NodeModel } from '../models/node.model';
 import { TableModel } from '../models/table.model';
 import { TNodeModel } from '../models/table-node.model';
+import { MdSnackBar } from '@angular/material';
 
 @Injectable()
 export class TableService {
@@ -17,6 +18,7 @@ export class TableService {
   // Urls
   private newTableUrl = 'http://psing/app_dev.php/api/tables/new';  // URL to web API
   private putTableUrl = 'http://psing/app_dev.php/api/tables';
+  private getTablesUrl = 'http://psing/app_dev.php/api/tables';
 
   // Table variables
   private currentTable: TableModel;
@@ -45,7 +47,7 @@ export class TableService {
     fillOpacity: 0.8
   };
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private snackBar: MdSnackBar) {
     this.currentTableChange.subscribe((value) => {
       this.currentTable = value;
       this.updateTable();
@@ -78,11 +80,16 @@ export class TableService {
     //this.currentTableChange.next(table);
   }
 
+  public changeCurrentTable(table: TableModel) {
+    this.currentTableChange.next(table);
+  }
+
   public getCurrentTable(): TableModel {
     return this.currentTable;
   }
 
   public pushNodesOnTable(nodes: Array<NodeModel>, table: TableModel) {
+    let existingNodesInTable: Array<NodeModel> = [];
     for(let node of nodes) {
       let alreadyExist: boolean = false;
       if(table.tNodes) {
@@ -99,10 +106,30 @@ export class TableService {
         node: node
       };
 
-      !alreadyExist ? table.tNodes.push(tNode) : console.log('this node already exists in table');
+      !alreadyExist ? table.tNodes.push(tNode) : existingNodesInTable.push(node);
+    }
+
+    if(existingNodesInTable.length > 0) {
+      if(existingNodesInTable.length == 1) {
+        this.snackBar.open(`Le relevé n° ${existingNodesInTable[0].id} existe déjà dans le tableau, il n'a pas été ajouté`, 'Ok')
+      } else {
+        const nodesDblIds: Array<number> = [];
+        existingNodesInTable.forEach(node => {
+          nodesDblIds.push(node.id);
+        });
+        this.snackBar.open(`${nodesDblIds.length} relevés existent déjà dans le tableau (n° ${nodesDblIds.toString()}), ils n'ont pas été ajoutés`, 'Ok')
+      }
     }
     this.currentTableChange.next(table);
     console.log(table);
+  }
+
+  public mergeWithCurrentTable(table: TableModel) {
+    let nodesToBePushed: Array<NodeModel> = [];
+    table.tNodes.forEach(tNode => {
+      nodesToBePushed.push(tNode.node);
+    });
+    this.pushNodesOnTable(nodesToBePushed, this.currentTable);
   }
 
   // The magic of Angular ends here !
@@ -182,7 +209,7 @@ export class TableService {
   }
 
   public getUniqueTaxons(nodes: Array<NodeModel>): (string | number)[] {
-    
+  
     // get all single taxons
     let taxons = this.getAllSingleTaxons(nodes);
 
@@ -375,6 +402,15 @@ export class TableService {
     v.validatedName ? validatedName = v.validatedName : validatedName = v.validated_name;
 
     return repo+'--'+nomen+'--'+validatedName;
+  }
+
+  public getAllTables(): Observable<Array<TableModel>> {
+    let httpRequest = this.http.get(this.getTablesUrl)
+    .map(res => res.json() as TableModel)
+    .catch((e) => {
+      return Observable.empty();
+    });
+    return httpRequest;
   }
   
 }

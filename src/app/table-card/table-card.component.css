@@ -1,0 +1,20 @@
+.table-mini {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.table-mini .flex {
+  display: flex;
+}
+.flex.top {
+  flex-direction: column;
+}
+.flex.bottom {
+  justify-content: space-around;
+}
+.small {
+  font-size: .8em;
+}
