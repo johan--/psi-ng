@@ -13,6 +13,7 @@
 
       <!-- HEADER (root node data)-->
       <div class="form-group" id="rootNode">
+        <!-- LEVEL -->
         <label for="rootNodeOptions">Selectionnez un référentiel et un niveau d'intégration</label>
         <div class="form-group form-inline" id ="rootNodeOptions">
           <md-select formName="repository" placeholder="Référentiel">
@@ -22,6 +23,16 @@
             <md-option value="synusy">synusie</md-option>
           </md-select>
         </div>
+        <!-- VALIDATION -->
+        <psi-node-search-box (validatedSyntaxon)="selectedValidSyntaxon($event);" (validatedSyntaxonInput)="selectedValidSyntaxonInput($event);"></psi-node-search-box>
+        <div [formGroup]="validatedSyntaxonFormGroup" style="display: block;">
+          <input formControlName="validatedSyntaxonRepository" value="baseveg" placeholder="referentiel">
+          <input formControlName="validatedSyntaxonInputName" value="{{ validatedSyntaxonInput }}" placeholder="nom saisi">
+          <input formControlName="validatedSyntaxonIdTaxo" value="{{ validatedSyntaxon?.catminatCode }}" placeholder="taxo">
+          <input formControlName="validatedSyntaxonIdNomen" value="{{ validatedSyntaxon?.id }}" placeholder="nomen">
+          <input formControlName="validatedSyntaxonValidatedName" value="{{ validatedSyntaxon?.syntaxon }}" placeholder="nom validé">
+        </div>
+        
         <!-- MAP -->
         <div class="psi-map">
           <div leaflet style="height: 300px;"

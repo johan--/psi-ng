@@ -17,6 +17,7 @@ import { TableService } from './services/table.service';
 import { SidenavService } from './services/sidenav.service';
 import { GeocodingService } from './services/geocoding.service';
 import { ApiTransformerService } from './services/api-transformer.service';
+import { AlgoliaService } from './services/algolia.service';
 import { NodeTypeAheadComponent } from './node-type-ahead/node-type-ahead.component';
 import { NodeRegisterComponent } from './node-register/node-register.component';
 import { MenuComponent } from './menu/menu.component';
@@ -35,6 +36,8 @@ import { TableSpreadsheetComponent } from './table-spreadsheet/table-spreadsheet
 import { TableSearchComponent } from './table-search/table-search.component';
 import { TableCardComponent } from './table-card/table-card.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { NodeHitsComponent } from './node-hits/node-hits.component';
+import { NodeSearchBoxComponent } from './node-search-box/node-search-box.component';
 //import { camelcaseKeys } from 'camelcase-keys';
 
 @NgModule({
@@ -54,7 +57,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     TableSpreadsheetComponent,
     TableSearchComponent,
     TableCardComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    NodeHitsComponent,
+    NodeSearchBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     LeafletDrawModule,
     HotTableModule
   ],
-  providers: [NodeService, TableService, GeocodingService, ApiTransformerService, SidenavService],
+  providers: [NodeService, TableService, GeocodingService, ApiTransformerService, SidenavService, AlgoliaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

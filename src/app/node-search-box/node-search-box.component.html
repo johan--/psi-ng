@@ -1,0 +1,9 @@
+<input
+  type="text"
+  [value]="node.query"
+  (input)="handleChange($event.target.value)"
+/>
+<psi-node-hits
+  [divVisible]="hitsVisible()"
+  (validatedSyntaxon)="selectedValidSyntaxon($event);"
+></psi-node-hits>

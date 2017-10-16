@@ -1,0 +1,7 @@
+<div class="is-hits-root" [style.display]="divVisible ? 'inherit' : 'none'">
+  <ul>
+    <li *ngFor="let hit of node.hits" (click)="clicked(hit)">
+      {{ hit.syntaxon }}
+    </li>
+  </ul>
+</div>

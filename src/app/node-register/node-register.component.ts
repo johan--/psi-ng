@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operator/map';
@@ -21,6 +21,7 @@ import { MdButtonModule, MdSelectModule, MdCardModule, MdInputContainer } from '
 import { bfPipe } from '../pipes/bfPipe';
 import { slideToLeft } from '../animations/anim';
 import { NotificationsService } from 'angular2-notifications';
+import { AlgoliaService } from '../services/algolia.service';
 
 let searchResults: any = [];
 
@@ -46,9 +47,25 @@ export class NodeRegisterComponent implements OnInit {
   geoJson: FormControl;
   isLoading: FormControl;
 
+  // Syntaxon validation inputs & variables
+  validatedSyntaxon: any = null;
+  validatedSyntaxonInput: string= '';
+  validatedSyntaxonFormGroup = new FormGroup({
+    validatedSyntaxonRepository: new FormControl('',),
+    validatedSyntaxonInputName: new FormControl('',),
+    validatedSyntaxonIdTaxo: new FormControl('',),
+    validatedSyntaxonIdNomen: new FormControl('',),
+    validatedSyntaxonValidatedName: new FormControl('',)
+  });
+
   mapSearchInput: FormControl;
   mapSearchResults: any;
 
+  // ALGOLIA Search box connection
+  ngAfterViewInit() {
+    this.algoliaService.basevegSearch.start();
+  }
+  
   // Leaflet
   private map: L.Map;
   public mapLat = 0;
@@ -133,7 +150,7 @@ console.log(this.mapLayers);
   }
   // End Leaflet
 
-  constructor(private fb: FormBuilder, private nodeService: NodeService, private tableService: TableService, private apiTS: apiTS, private geocodingService: GeocodingService, private notificationsService: NotificationsService, private router: Router) { }
+  constructor(private fb: FormBuilder, private nodeService: NodeService, private tableService: TableService, private apiTS: apiTS, private geocodingService: GeocodingService, private notificationsService: NotificationsService, private router: Router, private algoliaService: AlgoliaService) { }
 
   ngOnInit() {
     // Create Form Group
@@ -141,7 +158,8 @@ console.log(this.mapLayers);
       frontId: Date.now()-1,
       mapSearchInput: '',
       geoJson: '',
-      nodes: this.fb.array([ this.createNodeItem() ])
+      nodes: this.fb.array([ this.createNodeItem() ]),
+      validation: this.validatedSyntaxonFormGroup
     });
 
     // Map search & geocode
@@ -242,6 +260,12 @@ console.log(this.mapLayers);
   }
 
   register() {
+    this.validatedSyntaxonFormGroup.patchValue({validatedSyntaxonInputName: this.validatedSyntaxonInput});
+    this.validatedSyntaxonFormGroup.patchValue({validatedSyntaxonIdNomen: this.validatedSyntaxon.id});
+    this.validatedSyntaxonFormGroup.patchValue({validatedSyntaxonIdTaxo: this.validatedSyntaxon.catminatCode});
+    this.validatedSyntaxonFormGroup.patchValue({validatedSyntaxonRepository: 'baseveg'});
+    this.validatedSyntaxonFormGroup.patchValue({validatedSyntaxonValidatedName: this.validatedSyntaxon.syntaxon});
+
     this.nodeService.register(this.nodeForm.value)
     .subscribe(
       (response) => {
@@ -283,6 +307,14 @@ console.log(response);
     node.patchValue({inputName: node.value.name});
     node.patchValue({validatedName: this.apiTS.baseflorToTypeahead(node.value.searchResults)[resultIndex]});
     node.patchValue({searchResults: []});
+  }
+
+  selectedValidSyntaxon(node: NodeModel) {
+    this.validatedSyntaxon = node;
+  }
+
+  selectedValidSyntaxonInput(query: string) {
+    this.validatedSyntaxonInput = query;
   }
 
 }
