@@ -7,3 +7,9 @@
 .spreadsheet-menu {
   background-color: #d8d4d4;
 }
+.table-meta {
+  padding-top: 15px;
+  -webkit-box-shadow: inset 0px 3px 10px 0px rgba(122,121,122,1);
+  -moz-box-shadow: inset 0px 3px 10px 0px rgba(122,121,122,1);
+  box-shadow: inset 0px 3px 10px 0px rgba(122,121,122,1);
+}

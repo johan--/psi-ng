@@ -25,7 +25,7 @@ export class TableService {
   private currentTableChange: Subject<TableModel> = new Subject<TableModel>();
 
   // Spreadsheet variables
-  public spreadsheetChange: Subject<{data: any[], colHeaders: (string | number)[], columns: any[], colWidths: number[], options: any}> = new Subject<{data: any[], colHeaders: (string | number)[], columns: any[], colWidths: number[], options: any}>();
+  public spreadsheetChange: Subject<{data: any[], colHeaders: (string | number)[], columns: any[], /*colWidths: number[],*/ options: any}> = new Subject<{data: any[], colHeaders: (string | number)[], columns: any[], /*colWidths: number[],*/ options: any}>();
   private uniqueTaxons: any[] = [];
   public data: any[] = [];
   public colHeaders: (string | number)[] = [];
@@ -57,7 +57,7 @@ export class TableService {
       this.data = value.data;
       this.colHeaders = value.colHeaders;
       this.columns = value.columns;
-      this.colWidths = value.colWidths;
+      /*this.colWidths = value.colWidths;*/
       this.options = value.options;
     })
     this.mapChange.subscribe((value) => {
@@ -298,17 +298,17 @@ export class TableService {
     
     let nbSubNodes = this.countSubNodes(nodesItems);
     
-    const colWidths= [null, null, 300];
+    //const colWidths= [null, null, 300];
 
     for(let i=0;i<nbSubNodes;i++) {
       let columnMeta: { data: any } = { data: null};
       columnMeta.data = `coef.${i}`;
       columns.push(columnMeta);
-      colWidths.push(12);
+      //colWidths.push(12);
     }
 
     const options = {
-      stretchH: 'all',
+      stretchH: 'none',
       rowHeaders: true,
       columnSorting: false,
       contextMenu: [
@@ -316,8 +316,11 @@ export class TableService {
       ],
       manualColumnMove: true,
       manualRowMove: true,
+      manualColumnResize: true,
+      manualRowResize: true,
+      height: 300,
     };
-    this.spreadsheetChange.next({data, colHeaders, columns, colWidths, options});
+    this.spreadsheetChange.next({data, colHeaders, columns, /*colWidths,*/ options});
     this.markCurrentTableIsUpToDate();
   }
 

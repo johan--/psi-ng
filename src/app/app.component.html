@@ -1,21 +1,13 @@
 <psi-menu></psi-menu>
-
-
-  <md-sidenav-container class="example-container">
-    <psi-table></psi-table>
-    <md-sidenav #sidenav mode="push" class="example-sidenav" position="end">
-      <div class="sidenav-close">
-        <i class="material-icons" (click)="closeSidenav()">close</i>
-      </div>
-      <router-outlet></router-outlet>
-    </md-sidenav>
-
-    <div class="example-sidenav-content">
-      <button type="button" md-button (click)="sidenav.toggle()">
-        toggle sidenav
-      </button>
+<md-sidenav-container class="example-container">
+  <psi-table></psi-table>
+  <md-sidenav #sidenav mode="push" class="example-sidenav" position="end">
+    <div class="sidenav-close">
+      <i class="material-icons" (click)="closeSidenav()">close</i>
     </div>
+    <router-outlet></router-outlet>
+  </md-sidenav>
 
-  </md-sidenav-container>
+</md-sidenav-container>
 
 <psi-notifications></psi-notifications>

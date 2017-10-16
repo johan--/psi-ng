@@ -1,43 +1,45 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="spreadsheet-container">
-      <div class="spreadsheet-menu">
-        <span mdTooltip="Sauvegarder le tableau">
-          <button md-button color="basic">
-            <md-icon class="md-24" (click)="registerTable(currentTable)" aria-label="">save</md-icon>
-          </button>
-        </span>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="spreadsheet-container">
+        <div class="spreadsheet-menu">
+          <span mdTooltip="Sauvegarder le tableau">
+            <button md-button color="basic">
+              <md-icon class="md-24" (click)="registerTable(currentTable)" aria-label="">save</md-icon>
+            </button>
+          </span>
 
-        <span mdTooltip="Annuler">
-          <button md-button color="basic">
-            <md-icon class="md-24" aria-label="">undo</md-icon>
-          </button>
-        </span>
+          <span mdTooltip="Annuler">
+            <button md-button color="basic">
+              <md-icon class="md-24" aria-label="">undo</md-icon>
+            </button>
+          </span>
 
-        <span mdTooltip="Rétablir">
-          <button md-button color="basic">
-            <md-icon class="md-24" aria-label="">redo</md-icon>
-          </button>
-        </span>
+          <span mdTooltip="Rétablir">
+            <button md-button color="basic">
+              <md-icon class="md-24" aria-label="">redo</md-icon>
+            </button>
+          </span>
 
-        <span mdTooltip="Modifier">
-          <button md-button color="basic">
-            <md-icon class="md-24" aria-label="">content_copy</md-icon>
-          </button>
-        </span>
-        
-      </div>
-      <div class="spreadsheet-content">
-        <psi-table-spreadsheet [currentTable]="currentTable"></psi-table-spreadsheet>
+          <span mdTooltip="Modifier">
+            <button md-button color="basic">
+              <md-icon class="md-24" aria-label="">content_copy</md-icon>
+            </button>
+          </span>
+          
+        </div>
+        <div class="spreadsheet-content">
+          <psi-table-spreadsheet [currentTable]="currentTable"></psi-table-spreadsheet>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    Informations du tableau
-  </div>
-  <div class="col-md-6">
-    <psi-table-map [currentTable]="currentTable"></psi-table-map>
+  <div class="row table-meta">
+    <div class="col-md-6">
+      Informations du tableau
+    </div>
+    <div class="col-md-6">
+      <psi-table-map [currentTable]="currentTable"></psi-table-map>
+    </div>
   </div>
 </div>

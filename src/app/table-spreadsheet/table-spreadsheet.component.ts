@@ -12,7 +12,7 @@ export class TableSpreadsheetComponent implements OnInit {
   private data: any = this.tableService.data;
   private colHeaders: any = this.tableService.colHeaders;
   private columns: any = this.tableService.columns;
-  private colWidths: any = this.tableService.colWidths;
+  /*private colWidths: any = this.tableService.colWidths;*/
   private options: any = this.tableService.options;
 
   constructor(private tableService: TableService) {
@@ -20,7 +20,7 @@ export class TableSpreadsheetComponent implements OnInit {
       this.data = value.data;
       this.colHeaders = value.colHeaders;
       this.columns = value.columns;
-      this.colWidths = value.colWidths;
+      /*this.colWidths = value.colWidths;*/
       this.options = value.options;
     });
   }
