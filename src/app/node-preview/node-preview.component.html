@@ -1,0 +1,25 @@
+<hr>
+<div class="row">
+  <div class="col-md-7">
+    <b>Métadonnées</b>
+    <table class="table table-sm">
+      <tbody>
+        <tr>
+          <td>Auteur</td>
+          <td>(non dispo)</td>
+        </tr>
+        <tr>
+          <td>Date</td>
+          <td>(non dispo)</td>
+        </tr>
+        <tr>
+          <td>Localisation</td>
+          <td>{{ node.geoJson }}</td> <!-- faire un pipe 'bestTextualLocalisationAvailable : donner le nom des pays / départemment / commune si possible, sinon les coordonnées gps-->
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-5">
+    <b>Relevé</b>
+    <div [innerHtml]="tableView"></div>
+  </div>
+</div>

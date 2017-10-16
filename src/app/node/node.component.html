@@ -1,10 +1,15 @@
 <md-card class="node-mini">
 	<div class="flex top">
 		<div class="small"><span class="level">{{ node.level }} <span class="small">[id:{{ node.id }}]</span></span></div>
-		<div class="name">{{ node.name }}</div>
+		<div *ngFor="let validation of node.validations">
+			<div class="name">{{ validation.validatedName }}</div>
+		</div>
 	</div>
 	<div class="flex bottom">
-		<button md-button>Aperçu</button>
+		<button md-button (click)="togglePreview()">Aperçu</button>
 		<button md-button (click)="addNodeToCurrentTable(node)">Ajouter au tableau</button>
+	</div>
+	<div class="node-preview" [style.display]="preview ? 'block' : 'none'">
+		<psi-node-preview [node]="node"></psi-node-preview>
 	</div>
 </md-card>

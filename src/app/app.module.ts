@@ -38,6 +38,7 @@ import { TableCardComponent } from './table-card/table-card.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NodeHitsComponent } from './node-hits/node-hits.component';
 import { NodeSearchBoxComponent } from './node-search-box/node-search-box.component';
+import { NodePreviewComponent } from './node-preview/node-preview.component';
 //import { camelcaseKeys } from 'camelcase-keys';
 
 @NgModule({
@@ -59,7 +60,8 @@ import { NodeSearchBoxComponent } from './node-search-box/node-search-box.compon
     TableCardComponent,
     NotificationsComponent,
     NodeHitsComponent,
-    NodeSearchBoxComponent
+    NodeSearchBoxComponent,
+    NodePreviewComponent
   ],
   imports: [
     BrowserModule,

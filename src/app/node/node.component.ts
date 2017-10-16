@@ -14,9 +14,10 @@ import { ValidationModel } from '../models/validation.model';
 
 export class NodeComponent {
   @Input() node: NodeModel;
-	constructor(private tableService: TableService, private router: Router) {	}
 
-  //private currentTable: TableModel = this.tableService.getCurrentTable();;
+  preview: boolean = false;
+
+	constructor(private tableService: TableService, private router: Router) {	}
 
   addNodeToCurrentTable(node: NodeModel) {
     this.tableService.pushNodesOnTable([node], this.tableService.getCurrentTable());
@@ -24,6 +25,10 @@ export class NodeComponent {
     
     // redirect to table
     //this.router.navigate(['/']);
+  }
+
+  togglePreview() {
+    this.preview ? this.preview = false : this.preview = true;
   }
 	
 }
