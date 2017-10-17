@@ -26,6 +26,17 @@ export class TableComponent implements OnInit {
   private options: any = this.tableService.options;
   private currentTable: TableModel = this.tableService.getCurrentTable();
 
+  panelVisibility: boolean = true;
+  showPanelButtonVisibility: string = 'hidden';
+  panelDirection: string = 'vertical';
+  subPanelDirection: string = 'horizontal';
+  mapIsVisible: boolean = true;
+  metadataIsVisible: boolean = true;
+  flexDirectionPanel: string= 'row';
+  flexWrapPanel: string = 'wrap';
+  flexDisplayPanel: string = 'row';
+  mapOrder: number = 100;
+
   ngOnInit() {
     this.nodeService.listNodes().subscribe(
       (r: Array<NodeModel>) => { 
@@ -78,6 +89,33 @@ export class TableComponent implements OnInit {
         console.log(e);
       }
     )
+  }
+
+  togglePanelDirection() {
+    this.panelDirection == 'vertical' ? this.panelDirection = 'horizontal' : this.panelDirection = 'vertical';
+    this.panelDirection == 'vertical' ? this.subPanelDirection = 'horizontal' : this.subPanelDirection = 'vertical';
+    this.panelDirection == 'vertical' ? this.flexDirectionPanel = 'row' : this.flexDirectionPanel = 'column-reverse';
+    this.panelDirection == 'vertical' ? this.flexWrapPanel = 'wrap' : this.flexWrapPanel = 'wrap-reverse';
+    this.panelDirection == 'vertical' ? this.mapOrder = 100 : this.mapOrder = 1;
+    this.panelDirection == 'vertical' ? this.flexDisplayPanel = 'block' : this.flexDisplayPanel = 'flex';
+  }
+
+  toggleMapVisibility() {
+    this.mapIsVisible ? this.mapIsVisible = false : this.mapIsVisible = true;
+  }
+
+  toggleMetadataVisibility() {
+    this.metadataIsVisible ? this.metadataIsVisible = false : this.metadataIsVisible = true;
+  }
+
+  openPanel() {
+    this.panelVisibility = true;
+    this.showPanelButtonVisibility = 'hidden';
+  }
+
+  closePanel() {
+    this.panelVisibility = false;
+    this.showPanelButtonVisibility = 'visible';
   }
 
 }

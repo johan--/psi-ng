@@ -21,8 +21,8 @@ md-sidenav {
 .global-wrapper {
   display: table;
   position: absolute;
-  min-height: 100%;
   height: 100%;
+  height: calc(100% - 50px);
   width: 100%;
   overflow: hidden;
 }

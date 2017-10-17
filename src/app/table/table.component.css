@@ -18,3 +18,29 @@
   width: 100%;
   overflow: hidden;
 }
+.table-meta-wrapper {
+  display: flex;
+  position: relative;
+  height: 100%;
+}
+.table-meta-icons {
+  justify-content: flex-end;
+  flex: 0;
+  background-color: #f7f7f7;
+  padding: 10px;
+  padding-bottom: 30px;
+}
+.table-meta-items {
+  flex: 1;
+}
+.table-meta-icon {
+  cursor: pointer;
+  color: #C7C7C7;
+}
+.show-panel-button {
+  position: absolute;
+  margin: 15px;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+}

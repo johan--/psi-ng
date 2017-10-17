@@ -1,9 +1,10 @@
 <!-- https://github.com/handsontable/handsontable/issues/4419 -->
-spreadsheet:
-<hotTable [data]="data"
-  [colHeaders]="colHeaders"
-  [columns]="columns"
-  [options]="options"
-  [colWidths]="colWidths"
-  (afterColumnMove)="columnMoved(columns, options)">
-</hotTable>
+<div class="spreadsheet-wrapper">
+  <hotTable [data]="data"
+    [colHeaders]="colHeaders"
+    [columns]="columns"
+    [options]="options"
+    [colWidths]="colWidths"
+    (afterColumnMove)="columnMoved(columns, options)">
+  </hotTable>
+</div>

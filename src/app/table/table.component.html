@@ -1,54 +1,79 @@
-<!--<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="spreadsheet-container">
-        <div class="spreadsheet-menu">
-          <span mdTooltip="Sauvegarder le tableau">
-            <button md-button color="basic">
-              <md-icon class="md-24" (click)="registerTable(currentTable)" aria-label="">save</md-icon>
-            </button>
-          </span>
+<split [direction]="panelDirection">
+  <split-area [size]="60" style="position:relative;">
+      <div class="spreadsheet-menu">
+        <span mdTooltip="Sauvegarder le tableau">
+          <button md-button color="basic">
+            <md-icon class="md-24" (click)="registerTable(currentTable)" aria-label="">save</md-icon>
+          </button>
+        </span>
 
-          <span mdTooltip="Annuler">
-            <button md-button color="basic">
-              <md-icon class="md-24" aria-label="">undo</md-icon>
-            </button>
-          </span>
+        <span mdTooltip="Annuler">
+          <button md-button color="basic">
+            <md-icon class="md-24" aria-label="">undo</md-icon>
+          </button>
+        </span>
 
-          <span mdTooltip="Rétablir">
-            <button md-button color="basic">
-              <md-icon class="md-24" aria-label="">redo</md-icon>
-            </button>
-          </span>
+        <span mdTooltip="Rétablir">
+          <button md-button color="basic">
+            <md-icon class="md-24" aria-label="">redo</md-icon>
+          </button>
+        </span>
 
-          <span mdTooltip="Modifier">
-            <button md-button color="basic">
-              <md-icon class="md-24" aria-label="">content_copy</md-icon>
-            </button>
-          </span>
-          
-        </div>
-        <div class="spreadsheet-content">
-          <psi-table-spreadsheet [currentTable]="currentTable"></psi-table-spreadsheet>
-        </div>
+        <span mdTooltip="Modifier">
+          <button md-button color="basic">
+            <md-icon class="md-24" aria-label="">content_copy</md-icon>
+          </button>
+        </span>
+        
       </div>
-    </div>
-  </div>-->
-
-  <!--<div class="row table-meta">
-    <div class="col-md-6">
-      Informations du tableau
-    </div>
-    <div class="col-md-6">
-      <psi-table-map [currentTable]="currentTable"></psi-table-map>
-    </div>
-  </div>
-</div>-->
-<split direction="vertical">
-  <split-area [size]="80">
       <psi-table-spreadsheet [currentTable]="currentTable" style="position: absolute;"></psi-table-spreadsheet>
   </split-area>
-  <split-area [size]="20">
-      <psi-table-map [currentTable]="currentTable"></psi-table-map>
+  <split-area [size]="40" [visible]="panelVisibility">
+    <div class="table-meta-wrapper" [style.flex-direction]="flexDirectionPanel">
+      <div class="table-meta-items">
+        <split [direction]="subPanelDirection" [visibleTransition]="true">
+          <split-area [visible]="metadataIsVisible" [order]="2">
+            <p>Metadonnées</p>
+          </split-area>
+          <split-area [visible]="mapIsVisible" [order]="mapOrder">
+            <psi-table-map [currentTable]="currentTable"></psi-table-map>
+          </split-area>
+        </split>
+      </div>
+      
+      <div class="table-meta-icons" [style.flex-wrap]="flexWrapPanel" [style.display]="flexDisplayPanel">
+        <i class="material-icons table-meta-icon" (click)="closePanel()">
+          close
+        </i>
+        <i *ngIf="panelDirection == 'vertical'" class="material-icons table-meta-icon" (click)="togglePanelDirection()">
+          arrow_forward
+        </i>
+        <i *ngIf="panelDirection == 'horizontal'" class="material-icons table-meta-icon" (click)="togglePanelDirection()">
+          arrow_downward
+        </i>
+        <i class="material-icons table-meta-icon"
+        (click)="toggleMapVisibility()"
+        [style.color]="mapIsVisible ? '#5CB85C' : '#C7C7C7'">
+          map
+        </i>
+        <i class="material-icons table-meta-icon"
+        (click)="toggleMetadataVisibility()"
+        [style.color]="metadataIsVisible ? '#5CB85C' : '#C7C7C7'">
+          info
+        </i>
+        <i class="material-icons table-meta-icon">
+          linear_scale
+        </i>
+        <i class="material-icons table-meta-icon">
+          insert_chart
+        </i>
+      </div>
+    </div>
   </split-area>
 </split>
+
+<button md-mini-fab color="primary" class="show-panel-button" (click)="openPanel()" [style.visibility]="showPanelButtonVisibility">
+  <i class="material-icons table-meta-icon" >
+    more_horiz
+  </i>
+</button>
