@@ -317,8 +317,7 @@ export class TableService {
       manualColumnMove: true,
       manualRowMove: true,
       manualColumnResize: true,
-      manualRowResize: true,
-      height: 300,
+      manualRowResize: true
     };
     this.spreadsheetChange.next({data, colHeaders, columns, /*colWidths,*/ options});
     this.markCurrentTableIsUpToDate();

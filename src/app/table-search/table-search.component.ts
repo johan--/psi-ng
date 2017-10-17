@@ -15,7 +15,7 @@ export class TableSearchComponent implements OnInit {
   constructor(private tableService: TableService, private sidenavService: SidenavService) { }
 
   ngOnInit() {
-    this.sidenavService.sideNav.open();
+    //this.sidenavService.sideNav.open();
     this.getAllTables();
   }
 

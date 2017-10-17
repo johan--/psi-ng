@@ -13,3 +13,8 @@
   -moz-box-shadow: inset 0px 3px 10px 0px rgba(122,121,122,1);
   box-shadow: inset 0px 3px 10px 0px rgba(122,121,122,1);
 }
+.hot-table {
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+}

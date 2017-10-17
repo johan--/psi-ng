@@ -1,13 +1,15 @@
 <psi-menu></psi-menu>
-<md-sidenav-container class="example-container">
-  <psi-table></psi-table>
-  <md-sidenav #sidenav mode="push" class="example-sidenav" position="end">
-    <div class="sidenav-close">
-      <i class="material-icons" (click)="closeSidenav()">close</i>
-    </div>
-    <router-outlet></router-outlet>
-  </md-sidenav>
 
-</md-sidenav-container>
+<div class="global-wrapper">
+  <split direction="horizontal" [visibleTransition]="true">
+      <split-area [size]="25" [visible]="routerPanelDisabled">
+        <div class="close-router-panel-icon"><i class="material-icons" (click)="hideRouterPanel()">close</i></div>
+        <router-outlet ></router-outlet>
+      </split-area>
+      <split-area [size]="75">
+          <psi-table></psi-table>
+      </split-area>
+  </split>
+</div>
 
 <psi-notifications></psi-notifications>

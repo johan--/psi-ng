@@ -13,8 +13,11 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  openSidenav() {
-    this.sidenavService.sideNav.open();
+  showRouterPanel() {
+    this.sidenavService.showPanel();
   }
 
+  hideRouterPanel() {
+    this.sidenavService.hidePanel();
+  }
 }

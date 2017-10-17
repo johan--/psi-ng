@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { MdSidenav } from '@angular/material';
 import { SidenavService } from './services/sidenav.service';
 
 @Component({
@@ -9,16 +8,19 @@ import { SidenavService } from './services/sidenav.service';
 })
 
 export class AppComponent implements OnInit {
-  @ViewChild('sidenav') public sideNav: MdSidenav;
 
-  constructor(private sidenavService: SidenavService) { }
+  routerPanelDisabled: boolean = false;
 
-  ngOnInit() {
-    this.sidenavService.sideNav = this.sideNav;
+  constructor(private sidenavService: SidenavService) {
+    this.sidenavService.routerPanelDisabledChange.subscribe((value) => {
+      this.routerPanelDisabled = value.routerPanelDisabled;
+    });
   }
 
-  closeSidenav() {
-    this.sidenavService.sideNav.close();
+  ngOnInit() { }
+
+  hideRouterPanel() {
+    this.sidenavService.hidePanel();
   }
 
 }

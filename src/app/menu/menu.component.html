@@ -2,18 +2,18 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" [routerLink]="['/']">psi-ng</a>
+  <a class="navbar-brand" [routerLink]="['/']" (click)="hideRouterPanel()">psi-ng</a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/node-register']" (click)="openSidenav()">Saisir un relevé</a>
+        <a class="nav-link" [routerLink]="['/node-register']" (click)="showRouterPanel()">Saisir un relevé</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/node-search']" (click)="openSidenav()">Ajouter un relevé</a>
+        <a class="nav-link" [routerLink]="['/node-search']" (click)="showRouterPanel()">Rechercher un relevé</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/table-search']" (click)="openSidenav()">Tableaux</a>
+        <a class="nav-link" [routerLink]="['/table-search']" (click)="showRouterPanel()">Rechercher un tableau</a>
       </li>
     </ul>
   </div>

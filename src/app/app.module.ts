@@ -39,7 +39,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { NodeHitsComponent } from './node-hits/node-hits.component';
 import { NodeSearchBoxComponent } from './node-search-box/node-search-box.component';
 import { NodePreviewComponent } from './node-preview/node-preview.component';
-//import { camelcaseKeys } from 'camelcase-keys';
+import { AngularSplitModule } from 'angular-split';
 
 @NgModule({
   declarations: [
@@ -76,7 +76,8 @@ import { NodePreviewComponent } from './node-preview/node-preview.component';
     MaterialModule,
     LeafletModule,
     LeafletDrawModule,
-    HotTableModule
+    HotTableModule,
+    AngularSplitModule
   ],
   providers: [NodeService, TableService, GeocodingService, ApiTransformerService, SidenavService, AlgoliaService],
   bootstrap: [AppComponent]

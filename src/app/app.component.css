@@ -18,8 +18,21 @@ md-sidenav {
   float: right;
   margin: 5px;
 }
-.handsontable-container {
-    width: 100;
-    height: 100;
-    overflow: hidden;
+.global-wrapper {
+  display: table;
+  position: absolute;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.close-router-panel-icon {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.close-router-panel-icon i {
+  color: #c7c7c7;
+  padding-top: 5px;
+  padding-right: 5px;
+  cursor: pointer;
 }
