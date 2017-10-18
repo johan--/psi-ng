@@ -3080,6 +3080,12 @@ leaflet-draw@^0.4.10:
   version "0.4.10"
   resolved "https://registry.yarnpkg.com/leaflet-draw/-/leaflet-draw-0.4.10.tgz#a611a29925a32cde63638e891c3bfc93163e2f43"
 
+leaflet-easybutton@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/leaflet-easybutton/-/leaflet-easybutton-2.2.4.tgz#7301cc7d4bdcb55aa396c2697c056612950ab060"
+  dependencies:
+    leaflet "^1.0.1"
+
 leaflet-geosearch@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/leaflet-geosearch/-/leaflet-geosearch-2.5.0.tgz#cf481bdc0d6744211bd8b4fb0636064b7e6af16f"
@@ -3087,7 +3093,7 @@ leaflet-geosearch@^2.5.0:
     lodash.debounce "^4.0.8"
     nodent-runtime "^3.0.4"
 
-leaflet@1.0.3:
+leaflet@1.0.3, leaflet@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.0.3.tgz#1f401b98b45c8192134c6c8d69686253805007c8"
 

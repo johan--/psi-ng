@@ -37,6 +37,7 @@
     "instantsearch.js": "^2.1.4",
     "leaflet": "1.0.3",
     "leaflet-draw": "^0.4.10",
+    "leaflet-easybutton": "^2.2.4",
     "leaflet-geosearch": "^2.5.0",
     "ng2-completer": "^1.6.0",
     "ng2-handsontable": "^1.0.3",

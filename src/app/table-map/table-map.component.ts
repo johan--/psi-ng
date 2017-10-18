@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NodeModel } from '../models/node.model';
 import { TableService } from '../services/table.service';
+import 'leaflet-easybutton';
 
 @Component({
   selector: 'psi-table-map',
@@ -93,6 +94,20 @@ export class TableMapComponent implements OnInit {
     this.map.on('draw:deleted', (e) => {
       if(this.drawnItems.getLayers().length === 0) this.map.addControl(this.drawControlFull);
     })
+    const fitMapToNodesLayerButton = L.easyButton({
+     position: 'topleft',
+     leafletClasses: true,
+     states: [
+       {
+         stateName: 'center',
+         onClick: (btn, map) => {
+           this.tableService.fitMapToNodesLayerBounds();
+         },
+         title: 'Get Center',
+         icon: '<i class="material-icons">my_location</i>'
+       }
+     ]
+    }).addTo(this.map);
   }
 
 }

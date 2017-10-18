@@ -49,6 +49,7 @@ export class TableService {
     opacity: 1,
     fillOpacity: 0.8
   };
+  public geoJsonLayer: L.GeoJSON;
 
   constructor(private http: Http, private notificationsService: NotificationsService) {
     this.currentTableChange.subscribe((value) => {
@@ -336,14 +337,28 @@ export class TableService {
         geoJsons.push(node.geoJson);
       });
 
-      L.geoJSON(geoJsons, {
+      let geoJsonLayer = L.geoJSON(geoJsons, {
         pointToLayer: (feature, latlng) => {
           return L.circleMarker(latlng, this.geojsonMarkerOptions);
         }
       }).addTo(map);
+
       this.mapChange.next({map: map, geoJsons: geoJsons});
+      this.geoJsonLayer = geoJsonLayer;
+      this.fitMapToNodesLayerBounds();
     }catch(e) {
       //console.log(e);
+    }
+  }
+
+  public fitMapToNodesLayerBounds() {
+    let geoJsonLayerBounds: L.LatLngBoundsExpression = null;
+    this.geoJsonLayer ? geoJsonLayerBounds = this.geoJsonLayer.getBounds() : geoJsonLayerBounds = null;  
+    if(geoJsonLayerBounds != null) {
+      this.map.fitBounds(geoJsonLayerBounds);
+      if(this.map.getZoom() > 15) {
+        this.map.setZoom(15);
+      }
     }
   }
 
