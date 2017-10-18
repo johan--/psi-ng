@@ -34,6 +34,9 @@ export class TableService {
   public options: any = {};
   private tableHasChanged: boolean = false;
 
+  // Panel size change
+  public tablePanelSizeChange: Subject<{changed: boolean}> = new Subject<{changed: boolean}>();
+
   // Map variables
   public mapChange: Subject<{map: L.Map, geoJsons: any}> = new Subject<{map: L.Map, geoJsons: any}>();
   public map: L.Map;
@@ -413,6 +416,10 @@ export class TableService {
       return Observable.empty();
     });
     return httpRequest;
+  }
+
+    panelSizeChange() {
+    this.tablePanelSizeChange.next()
   }
   
 }

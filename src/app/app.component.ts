@@ -17,14 +17,14 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    console.log((window.screen.height) + "px");
-    console.log((window.screen.width) + "px");
-
-  }
+  ngOnInit() { }
 
   hideRouterPanel() {
     this.sidenavService.hidePanel();
+  }
+
+  panelDrag() {
+    this.sidenavService.tellPanelSizeHasChanged();
   }
 
 }

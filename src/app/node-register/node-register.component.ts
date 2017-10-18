@@ -15,6 +15,7 @@ import { NodeComponent } from '../node/node.component';
 import { NodeService } from '../services/node.service';
 import { TableService} from '../services/table.service';
 import { GeocodingService } from '../services/geocoding.service';
+import { SidenavService } from '../services/sidenav.service';
 import { ApiTransformerService as apiTS } from '../services/api-transformer.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MdButtonModule, MdSelectModule, MdCardModule, MdInputContainer } from '@angular/material';
@@ -150,7 +151,7 @@ console.log(this.mapLayers);
   }
   // End Leaflet
 
-  constructor(private fb: FormBuilder, private nodeService: NodeService, private tableService: TableService, private apiTS: apiTS, private geocodingService: GeocodingService, private notificationsService: NotificationsService, private router: Router, private algoliaService: AlgoliaService) { }
+  constructor(private fb: FormBuilder, private nodeService: NodeService, private tableService: TableService, private apiTS: apiTS, private geocodingService: GeocodingService, private notificationsService: NotificationsService, private router: Router, private algoliaService: AlgoliaService, private sidenavService: SidenavService) { }
 
   ngOnInit() {
     // Create Form Group
@@ -173,6 +174,12 @@ console.log(this.mapLayers);
         },
         (e) => console.log('error')
       )
+
+      // Listen on router panel size change
+      // On change, redraw the map
+      this.sidenavService.panelSizeChange.subscribe((value) => {
+        this.redrawMap();
+      });
   }
 
   mapResultClick(item) {
@@ -188,6 +195,11 @@ console.log(this.mapLayers);
     this.map.flyTo(L.latLng(this.mapLat, this.mapLng));
     this.map.fitBounds(bounds);
     this.mapSearchResults = null;
+  }
+
+  // When the map parent's div size change (eg. panel width), have to redraw the map
+  redrawMap() {
+    this.map.invalidateSize();
   }
 
   // Validation

@@ -1,4 +1,4 @@
-<split [direction]="panelDirection">
+<split [direction]="panelDirection" (dragProgress)="panelDrag()">
   <split-area [size]="60" style="position:relative;">
       <div class="spreadsheet-menu">
         <span mdTooltip="Sauvegarder le tableau">
@@ -31,7 +31,7 @@
   <split-area [size]="40" [visible]="panelVisibility">
     <div class="table-meta-wrapper" [style.flex-direction]="flexDirectionPanel">
       <div class="table-meta-items">
-        <split [direction]="subPanelDirection" [visibleTransition]="true">
+        <split [direction]="subPanelDirection" [visibleTransition]="true" (dragProgress)="panelDrag()">
           <split-area [visible]="metadataIsVisible" [order]="2">
             <p>Metadonnées</p>
           </split-area>

@@ -9,12 +9,12 @@ export class SidenavService {
 
   public routerPanelDisabled: boolean = false;
   public routerPanelDisabledChange: Subject<{routerPanelDisabled: boolean}> = new Subject<{routerPanelDisabled: boolean}>();
+  public panelSizeChange: Subject<{changed: boolean}> = new Subject<{changed: boolean}>();
 
   constructor() {
     this.routerPanelDisabledChange.subscribe((value) => {
       this.routerPanelDisabled = value.routerPanelDisabled;
     });
-
     }
 
   showPanel() {
@@ -23,6 +23,10 @@ export class SidenavService {
 
   hidePanel() {
     this.routerPanelDisabledChange.next({routerPanelDisabled: false});
+  }
+
+  tellPanelSizeHasChanged() {
+    this.panelSizeChange.next({changed: true});
   }
 
 }

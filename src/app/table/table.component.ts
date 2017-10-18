@@ -118,4 +118,9 @@ export class TableComponent implements OnInit {
     this.showPanelButtonVisibility = 'visible';
   }
 
+  // User is dragging the panel
+  panelDrag() {
+    this.tableService.tablePanelSizeChange.next({changed: true});
+  }
+
 }

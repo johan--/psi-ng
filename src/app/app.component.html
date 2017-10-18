@@ -1,10 +1,10 @@
 <psi-menu></psi-menu>
 
 <div class="global-wrapper">
-  <split direction="horizontal" [visibleTransition]="true">
-      <split-area [size]="25" [visible]="routerPanelDisabled" #splitArea>
+  <split direction="horizontal" [visibleTransition]="true" (dragProgress)="panelDrag($event)">
+      <split-area [size]="25" [visible]="routerPanelDisabled">
         <div class="close-router-panel-icon"><a [routerLink]="['/']" (click)="hideRouterPanel()"><i class="material-icons">close</i></a></div>
-        <div class="router-wrapper" [style.height]="splitArea.height">
+        <div class="router-wrapper">
           <router-outlet ></router-outlet>
         </div>
       </split-area>

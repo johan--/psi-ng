@@ -2,7 +2,7 @@
   <h3>Saisir un relevé</h3>
   <form (ngSubmit)="register()" [formGroup]="nodeForm">
     <md-expansion-panel>
-      <md-expansion-panel-header>
+      <md-expansion-panel-header (click)="redrawMap()">
         <md-panel-title>
           Métadonnées
         </md-panel-title>

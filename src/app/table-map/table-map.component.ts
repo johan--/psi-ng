@@ -18,7 +18,10 @@ export class TableMapComponent implements OnInit {
   }
 
   ngOnInit() {
-//console.log(this.currentTable);
+    // When table panel size change, update the map
+    this.tableService.tablePanelSizeChange.subscribe((value) => {
+      this.map.invalidateSize();
+    });
   }
 
   // Leaflet
