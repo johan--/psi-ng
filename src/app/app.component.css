@@ -9,6 +9,12 @@ md-sidenav {
   min-width: 50%;
   max-width: 80%;
 }
+
+.router-wrapper {
+  height: 90vh;
+  overflow-y: scroll;
+}
+
 .sidenav-close {
   font-size: 1.5em;
   color: grey;

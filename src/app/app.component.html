@@ -2,9 +2,11 @@
 
 <div class="global-wrapper">
   <split direction="horizontal" [visibleTransition]="true">
-      <split-area [size]="25" [visible]="routerPanelDisabled">
+      <split-area [size]="25" [visible]="routerPanelDisabled" #splitArea>
         <div class="close-router-panel-icon"><a [routerLink]="['/']" (click)="hideRouterPanel()"><i class="material-icons">close</i></a></div>
-        <router-outlet ></router-outlet>
+        <div class="router-wrapper" [style.height]="splitArea.height">
+          <router-outlet ></router-outlet>
+        </div>
       </split-area>
       <split-area [size]="75">
           <psi-table></psi-table>
